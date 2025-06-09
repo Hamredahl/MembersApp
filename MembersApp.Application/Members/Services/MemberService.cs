@@ -24,6 +24,7 @@ public class MemberService(IUnitOfWork unitOfWork) : IMemberService
         }
         member.Email = member.Email?.ToLower();
         await unitOfWork.Members.AddMemberAsync(member);
+        await unitOfWork.SaveAllAsync();
 
         string ToInitalCapital(string s) => $"{s[..1].ToUpper()}{s[1..]}";
     }
@@ -37,7 +38,6 @@ public class MemberService(IUnitOfWork unitOfWork) : IMemberService
     public async Task<Member> GetMemberAsync(int Id)
     {
         Member? member = await unitOfWork.Members.GetMemberAsync(Id);
-
         return member is null ? throw new Exception("Member not found, invalid ID") : member;
     }
 
