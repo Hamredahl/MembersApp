@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MembersApp.Application;
+using MembersApp.Application.Members.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MembersApp.Web.Controllers
 {
-    public class MemberController : Controller
+    public class MemberController(IMemberService service) : Controller
     {
 
         [Authorize]
@@ -14,10 +16,21 @@ namespace MembersApp.Web.Controllers
             return View();
         }
 
-        
-        public IActionResult Index()
+        [HttpGet ("create")]
+        public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost("create")]
+        public async Task <IActionResult> Create(CreateVM viewModel)
+        {
+            var result = await service.AddMemberAsync(viewModel.FirstName, viewModel.LastName, viewModel.Email, viewModel.PhoneNumber),
+               
+
+            await return View();
+
+
         }
     }
 }
