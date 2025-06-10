@@ -10,4 +10,8 @@
     <ProjectReference Include="..\MembersApp.Domain\MembersApp.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Users\" />
+  </ItemGroup>
+
 </Project>
