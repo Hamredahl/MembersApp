@@ -21,6 +21,8 @@ public class IdentityUserService(
             //Email = userName
         }, password);
 
+        if(result.Succeeded && userName.ToLower() == "admin") await userManager.AddToRoleAsync(await userManager.FindByNameAsync(userName), "ADMIN");
+
         return new UserResultDto(result.Errors.FirstOrDefault()?.Description);
     }
 

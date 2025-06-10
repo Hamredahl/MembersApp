@@ -10,6 +10,6 @@ public interface IMemberService
 {
     Task AddMemberAsync(Member member);
     Task<Member> GetMemberAsync(int Id);
-    Task<List<Member>> GetAllMembersAsync();
+    Task<Member[]> GetAllMembersAsync();
     
 }

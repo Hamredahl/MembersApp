@@ -4,6 +4,7 @@ using MembersApp.Domain.Entities;
 using MembersApp.Web.Views.Member;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace MembersApp.Web.Controllers
 {
@@ -13,9 +14,18 @@ namespace MembersApp.Web.Controllers
         [Authorize]
         [HttpGet("")]
         [HttpGet("members")]
-        public IActionResult Members()
+        public async Task<IActionResult> Members()
         {
-            return View();
+            var model = await service.GetAllMembersAsync();
+            var viewModel = new MembersVM()
+            {
+                MembersVMs = [.. model.Select(m => new MembersVM.MemberVM()
+                {
+                    Name = m.Name,
+                    City = m.MemberAddress?.City
+                })]
+            };
+            return View(viewModel);
         }
 
         [Authorize(Roles = "ADMIN")]
@@ -34,7 +44,7 @@ namespace MembersApp.Web.Controllers
 
             Address address = new() { Street = viewModel.Street, ZipNumber = viewModel.ZipNumber, City = viewModel.City};
             Member member = new() { Name = viewModel.Name, Email = viewModel.Email, Phone = viewModel.Phone, MemberAddress = address, };
-            await service.AddMemberAsync(member);               
+            await service.AddMemberAsync(member);  
 
             return RedirectToAction(nameof(Members));
         }

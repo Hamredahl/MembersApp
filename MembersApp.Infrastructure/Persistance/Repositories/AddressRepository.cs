@@ -14,8 +14,9 @@ public class AddressRepository(ApplicationContext context) : IAddressRepository
         throw new NotImplementedException();
     }
 
-    public Task<Address> GetAddress(int Id)
+    public async Task<Address> GetAddress(int Id)
     {
+        //return await context.Addresses.FindAsync(Id);
         throw new NotImplementedException();
     }
 

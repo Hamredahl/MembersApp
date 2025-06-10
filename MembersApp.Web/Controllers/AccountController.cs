@@ -56,7 +56,7 @@ namespace MembersApp.Web.Controllers
             }
 
             // Redirect user
-            return RedirectToAction(nameof(MemberController.Members),nameof(MemberController));
+            return RedirectToAction(nameof(MemberController.Members), nameof(Member));
         }
 
         [HttpGet("logout")]

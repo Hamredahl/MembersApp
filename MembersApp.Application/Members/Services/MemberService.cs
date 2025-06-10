@@ -29,7 +29,7 @@ public class MemberService(IUnitOfWork unitOfWork) : IMemberService
         string ToInitalCapital(string s) => $"{s[..1].ToUpper()}{s[1..]}";
     }
 
-    public async Task<List<Member>> GetAllMembersAsync()
+    public async Task<Member[]> GetAllMembersAsync()
     {
         var members = await unitOfWork.Members.GetAllMembersAsync();
         return [.. members.OrderBy(m => m.Name)];
