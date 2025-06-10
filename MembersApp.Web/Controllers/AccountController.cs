@@ -1,10 +1,11 @@
-﻿using MembersApp.Domain.Entities;
+﻿using MembersApp.Application.Users;
+using MembersApp.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MembersApp.Web.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController(IUserService userService) : Controller
     {
         [HttpGet("register")]
         public IActionResult Register()
@@ -19,8 +20,8 @@ namespace MembersApp.Web.Controllers
                 return View();
 
             // Try to register user
-            var userDto = new UserProfileDto(viewModel.Email, viewModel.FirstName, viewModel.LastName);
-            var result = await userService.CreateUserAsync(userDto, viewModel.Password);
+            
+            var result = await userService.CreateUserAsync(viewModel.Username, viewModel.Password);
             if (!result.Succeeded)
             {
                 // Show error
@@ -54,7 +55,7 @@ namespace MembersApp.Web.Controllers
             }
 
             // Redirect user
-            return RedirectToAction(nameof(Members));
+            return RedirectToAction(nameof(MemberController.Members),nameof(MemberController));
         }
     }
 }
