@@ -1,14 +1,12 @@
 ﻿﻿@using MembersApp.Web.Views.Member
 @model MembersVM
-
 @{
     ViewBag.Title = "Members";
 }
 <h2>Members</h2>
-
 <ol>
     @foreach (var member in Model.MembersVMs)
     {
-        <li>@member.Name@(string.IsNullOrEmpty(member.City) ? "" : $",{@member.City}")</li>
+        <li>@member.Name@(string.IsNullOrEmpty(member.City) ? "" : $", {@member.City}")</li>
     }
 </ol>

@@ -14,5 +14,7 @@ namespace MembersApp.Web.Views.Account
         [Display(Name = "Repeat password")]
         [Compare(nameof(Password))]
         public string PasswordRepeat { get; set; } = null!;
+        [Display(Name = "Admin")]
+        public bool IsAdmin { get; set; }
     }
 }

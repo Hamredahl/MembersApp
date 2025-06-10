@@ -14,7 +14,17 @@
     <label asp-for="@Model.PasswordRepeat"></label>
     <input asp-for="@Model.PasswordRepeat" />
     <span asp-validation-for="@Model.PasswordRepeat"></span>
+
+    <label asp-for="@Model.IsAdmin"></label>
+    <input type="checkbox" asp-for="@Model.IsAdmin" />
+    <span asp-validation-for="@Model.IsAdmin"></span>
+    <br />
     <br />
     <input type="submit" value="Register" />
     <div asp-validation-summary="All"></div>
 </form>
+@section scripts
+{
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+}

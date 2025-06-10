@@ -19,18 +19,14 @@ namespace MembersApp.Web.Controllers
         {
             if (!ModelState.IsValid)
                 return View();
-
-            // Try to register user
             
-            var result = await userService.CreateUserAsync(viewModel.Username, viewModel.Password);
+            var result = await userService.CreateUserAsync(viewModel.Username, viewModel.Password, viewModel.IsAdmin);
             if (!result.Succeeded)
             {
-                // Show error
                 ModelState.AddModelError(string.Empty, result.ErrorMessage!);
                 return View();
             }
 
-            // Redirect user
             return RedirectToAction(nameof(Login));
         }
 
@@ -46,16 +42,13 @@ namespace MembersApp.Web.Controllers
             if (!ModelState.IsValid)
                 return View();
 
-            // Check if credentials is valid (and set auth cookie)
             var result = await userService.SignInAsync(viewModel.Username, viewModel.Password);
             if (!result.Succeeded)
             {
-                // Show error
                 ModelState.AddModelError(string.Empty, result.ErrorMessage!);
                 return View();
             }
 
-            // Redirect user
             return RedirectToAction(nameof(MemberController.Members), nameof(Member));
         }
 

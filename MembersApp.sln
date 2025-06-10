@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MembersApp.Infrastructure",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MembersApp.Terminal", "MembersApp.Terminal\MembersApp.Terminal.csproj", "{F2BD6056-11FC-41B3-BF90-A5A3204AD3DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MembersApp.Application.Tests", "MembersApp.Application.Tests\MembersApp.Application.Tests.csproj", "{FFDA018F-0CE2-4B11-A0ED-09F4BBF2F1EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MembersApp.Web.Tests", "MembersApp.Web.Tests\MembersApp.Web.Tests.csproj", "{3F0D9CDD-5572-4F96-824B-043D70661DCD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{F2BD6056-11FC-41B3-BF90-A5A3204AD3DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2BD6056-11FC-41B3-BF90-A5A3204AD3DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2BD6056-11FC-41B3-BF90-A5A3204AD3DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFDA018F-0CE2-4B11-A0ED-09F4BBF2F1EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFDA018F-0CE2-4B11-A0ED-09F4BBF2F1EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFDA018F-0CE2-4B11-A0ED-09F4BBF2F1EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFDA018F-0CE2-4B11-A0ED-09F4BBF2F1EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F0D9CDD-5572-4F96-824B-043D70661DCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F0D9CDD-5572-4F96-824B-043D70661DCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F0D9CDD-5572-4F96-824B-043D70661DCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F0D9CDD-5572-4F96-824B-043D70661DCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

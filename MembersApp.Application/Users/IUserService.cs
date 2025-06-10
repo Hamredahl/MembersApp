@@ -9,7 +9,7 @@ namespace MembersApp.Application.Users
 {
     public interface IUserService
     {
-        Task<UserResultDto> CreateUserAsync(string userName, string password);
+        Task<UserResultDto> CreateUserAsync(string userName, string password, bool isAdmin);
         Task<UserResultDto> SignInAsync(string userName, string password);
         Task SignOutAsync();
     }

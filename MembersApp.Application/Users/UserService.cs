@@ -9,8 +9,8 @@ namespace MembersApp.Application.Users;
 
 public class UserService(IIdentityUserService identityUserService) : IUserService
 {
-    public async Task<UserResultDto> CreateUserAsync(string userName, string password) =>
-        await identityUserService.CreateUserAsync(userName, password);
+    public async Task<UserResultDto> CreateUserAsync(string userName, string password, bool isAdmin) =>
+        await identityUserService.CreateUserAsync(userName, password, isAdmin);
 
     public async Task<UserResultDto> SignInAsync(string userName, string password) =>
         await identityUserService.SignInAsync(userName, password);

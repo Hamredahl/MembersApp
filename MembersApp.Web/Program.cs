@@ -40,25 +40,11 @@ public class Program
 
         var app = builder.Build();
 
-        AddRole(app);
-
         app.UseAuthorization();
 
         app.UseHttpsRedirection();
         app.MapControllers();
 
         app.Run();
-    }
-    public static async Task AddRole(WebApplication app)
-    {
-        using (var scope = app.Services.CreateScope())
-        {
-            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            string role = "ADMIN";
-            if (!await roleManager.RoleExistsAsync(role))
-            {
-                await roleManager.CreateAsync(new IdentityRole(role));
-            }
-        }
     }
 }

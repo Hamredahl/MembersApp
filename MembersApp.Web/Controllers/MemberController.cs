@@ -28,14 +28,14 @@ namespace MembersApp.Web.Controllers
             return View(viewModel);
         }
 
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "Administrators")]
         [HttpGet ("create")]
         public IActionResult Create()
         {
             return View();
         }
 
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "Administrators")]
         [HttpPost("create")]
         public async Task <IActionResult> Create(CreateVM viewModel)
         {

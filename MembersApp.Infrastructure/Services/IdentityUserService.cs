@@ -11,9 +11,10 @@ namespace MembersApp.Infrastructure.Services;
 
 public class IdentityUserService(
     UserManager<IdentityUser> userManager,
-    SignInManager<IdentityUser> signInManager) : IIdentityUserService
+    SignInManager<IdentityUser> signInManager,
+    RoleManager<IdentityRole> roleManager) : IIdentityUserService
 {
-    public async Task<UserResultDto> CreateUserAsync(string userName, string password)
+    public async Task<UserResultDto> CreateUserAsync(string userName, string password, bool isAdmin)
     {
         var result = await userManager.CreateAsync(new IdentityUser
         {
@@ -21,8 +22,12 @@ public class IdentityUserService(
             //Email = userName
         }, password);
 
-        if(result.Succeeded && userName.ToLower() == "admin") await userManager.AddToRoleAsync(await userManager.FindByNameAsync(userName), "ADMIN");
-
+        if (result.Succeeded && isAdmin)
+        {
+            string role = "Administrators";
+            if (!await roleManager.RoleExistsAsync(role)) await roleManager.CreateAsync(new IdentityRole(role));
+            await userManager.AddToRoleAsync(await userManager.FindByNameAsync(userName), role);
+        }  
         return new UserResultDto(result.Errors.FirstOrDefault()?.Description);
     }
 
