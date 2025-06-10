@@ -1,5 +1,6 @@
 ﻿using MembersApp.Application.Users;
 using MembersApp.Domain.Entities;
+using MembersApp.Web.Views.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +15,7 @@ namespace MembersApp.Web.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterAsync(RegisterVM viewModel)
+        public async Task<IActionResult> Register(RegisterVM viewModel)
         {
             if (!ModelState.IsValid)
                 return View();
@@ -40,7 +41,7 @@ namespace MembersApp.Web.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> LoginAsync(LoginVM viewModel)
+        public async Task<IActionResult> Login(LoginVM viewModel)
         {
             if (!ModelState.IsValid)
                 return View();
