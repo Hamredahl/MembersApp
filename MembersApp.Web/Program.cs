@@ -17,9 +17,9 @@ namespace MembersApp.Web
 
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddTransient<IMemberRepository, MemberRepository>();
-            builder.Services.AddTransient<IAddressRepository, AddressRepository>();
-            builder.Services.AddTransient<IMemberService, MemberService>();
+            builder.Services.AddScoped<IMemberRepository, MemberRepository>();
+            builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+            builder.Services.AddScoped<IMemberService, MemberService>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>

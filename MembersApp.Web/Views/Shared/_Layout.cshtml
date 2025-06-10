@@ -7,13 +7,10 @@
 </head>
 <body style="padding: 1rem;">
     <nav>
-        @if(User.Identity!.IsAuthenticated)
+        @if (User.Identity!.IsAuthenticated)
         {
             <a asp-controller="Member" asp-action="Members">Members</a>
-            @if(User.IsInRole("ADMIN"))
-            {
-                <a asp-controller="Member" asp-action="Create">Add new member</a>
-            }
+            @if (User.IsInRole("ADMIN")){<a asp-controller="Member" asp-action="Create">Add new member</a>}
             <a asp-controller="Account" asp-action="Logout">Logout</a>
         } else
         {
