@@ -1,5 +1,33 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿﻿@using MembersApp.Web.Views.Member
+@model CreateVM
+
+<form asp-controller="Members" asp-action="Create" style="width: 300px;">
+    <label asp-for="@Model.Name"></label>
+    <input asp-for="@Model.Name" />
+    <span asp-validation-for="@Model.Name"></span>
+
+    <label asp-for="@Model.Email"></label>
+    <input asp-for="@Model.Email" />
+    <span asp-validation-for="@Model.Email"></span>
+    <br />
+
+    <label asp-for="@Model.Phone"></label>
+    <input asp-for="@Model.Phone" />
+    <span asp-validation-for="@Model.Phone"></span>
+    <br />
+
+    <label asp-for="@Model.Street"></label>
+    <input asp-for="@Model.Street" />
+    <br />
+
+    <label asp-for="@Model.ZipNumber"></label>
+    <input asp-for="@Model.ZipNumber" />
+    <br />
+
+    <label asp-for="@Model.City"></label>
+    <input asp-for="@Model.City" />
+    <br />
+
+    <input type="submit" value="Save" />
+    <div asp-validation-summary="All"></div>
+</form>

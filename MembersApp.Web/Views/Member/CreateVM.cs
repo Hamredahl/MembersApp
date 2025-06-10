@@ -9,7 +9,7 @@ namespace MembersApp.Web.Views.Member
         public required string Name { get; set; }
         [EmailAddress]
         public string? Email { get; set; }
-        [Display(Name = "Phonenumber")]
+        [Display(Name = "Phone number")]
         [Phone]
         public string? Phone { get; set; }
         [Display(Name = "Streetname and number")]

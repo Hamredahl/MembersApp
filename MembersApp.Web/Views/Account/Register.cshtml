@@ -1,5 +1,20 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿﻿@using MembersApp.Web.Views.Account
+@model RegisterVM
+<h3>Register</h3>
+<form asp-controller="Account" asp-action="Register">
+
+    <label asp-for="@Model.Username"></label>
+    <input asp-for="@Model.Username" />
+    <span asp-validation-for="@Model.Username"></span>
+
+    <label asp-for="@Model.Password"></label>
+    <input asp-for="@Model.Password" />
+    <span asp-validation-for="@Model.Password"></span>
+
+    <label asp-for="@Model.PasswordRepeat"></label>
+    <input asp-for="@Model.PasswordRepeat" />
+    <span asp-validation-for="@Model.PasswordRepeat"></span>
+    <br />
+    <input type="submit" value="Register" />
+    <div asp-validation-summary="All"></div>
+</form>
