@@ -10,6 +10,6 @@ namespace MembersApp.Application;
 public interface IUnitOfWork
 {
     IMemberRepository Members { get; }
-    IAddressRepository Adresses { get; }
+    IAddressRepository Addresses { get; }
     Task SaveAllAsync();
 }
