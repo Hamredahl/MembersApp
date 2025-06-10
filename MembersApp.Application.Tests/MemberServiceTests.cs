@@ -1,6 +1,6 @@
-﻿namespace MembersApp.Web.Tests
+﻿namespace MembersApp.Application.Tests
 {
-    public class UnitTest1
+    public class MemberServiceTests
     {
         [Fact]
         public void Test1()
