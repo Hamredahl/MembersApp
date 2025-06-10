@@ -1,0 +1,60 @@
+﻿using MembersApp.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace MembersApp.Web.Controllers
+{
+    public class AccountController : Controller
+    {
+        [HttpGet("register")]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> RegisterAsync(RegisterVM viewModel)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            // Try to register user
+            var userDto = new UserProfileDto(viewModel.Email, viewModel.FirstName, viewModel.LastName);
+            var result = await userService.CreateUserAsync(userDto, viewModel.Password);
+            if (!result.Succeeded)
+            {
+                // Show error
+                ModelState.AddModelError(string.Empty, result.ErrorMessage!);
+                return View();
+            }
+
+            // Redirect user
+            return RedirectToAction(nameof(Login));
+        }
+
+        [HttpGet("login")]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> LoginAsync(LoginVM viewModel)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            // Check if credentials is valid (and set auth cookie)
+            var result = await userService.SignInAsync(viewModel.Username, viewModel.Password);
+            if (!result.Succeeded)
+            {
+                // Show error
+                ModelState.AddModelError(string.Empty, result.ErrorMessage!);
+                return View();
+            }
+
+            // Redirect user
+            return RedirectToAction(nameof(Members));
+        }
+    }
+}

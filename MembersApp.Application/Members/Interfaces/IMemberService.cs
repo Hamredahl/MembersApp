@@ -11,5 +11,5 @@ public interface IMemberService
     Task AddMemberAsync(Member member);
     Task<Member> GetMemberAsync(int Id);
     Task<List<Member>> GetAllMembersAsync();
-    bool IsAdmin(Member member);
+    
 }

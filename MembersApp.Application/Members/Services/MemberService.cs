@@ -40,7 +40,4 @@ public class MemberService(IUnitOfWork unitOfWork) : IMemberService
         Member? member = await unitOfWork.Members.GetMemberAsync(Id);
         return member is null ? throw new Exception("Member not found, invalid ID") : member;
     }
-
-    public bool IsAdmin(Member member) => 
-        member.IsAdmin;
 }

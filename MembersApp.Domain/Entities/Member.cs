@@ -13,5 +13,4 @@ public class Member
     public string? Phone { get; set; }
     public int? AddressId { get; set; }
     public Address? MemberAddress { get; set; }
-    public bool IsAdmin { get; set; }
 }
