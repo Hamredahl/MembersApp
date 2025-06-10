@@ -58,5 +58,12 @@ namespace MembersApp.Web.Controllers
             // Redirect user
             return RedirectToAction(nameof(MemberController.Members),nameof(MemberController));
         }
+
+        [HttpGet("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await userService.SignOutAsync();
+            return RedirectToAction(nameof(Login));
+        }
     }
 }

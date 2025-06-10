@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://unpkg.com/@@picocss/pico@@latest/css/pico.classless.min.css">
+</head>
+<body style="padding: 1rem;">
+    <nav>
+        @if(User.Identity!.IsAuthenticated)
+        {
+            <a asp-controller="Account" asp-action="Members">Members</a>
+            @if(User.IsInRole("ADMIN"))
+            {
+                <a asp-controller="Account" asp-action="Register">Register</a>
+            }
+            <a asp-controller="Account" asp-action="Logout">Logout</a>
+        } else
+        {
+            <a asp-controller="Account" asp-action="Login">Login</a> //Is this needed?
+        }        
+    </nav>
+    <br />
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -11,5 +11,6 @@ namespace MembersApp.Application.Users
     {
         Task<UserResultDto> CreateUserAsync(string userName, string password);
         Task<UserResultDto> SignInAsync(string userName, string password);
+        Task SignOutAsync();
     }
 }

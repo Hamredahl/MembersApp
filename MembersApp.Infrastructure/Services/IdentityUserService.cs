@@ -29,4 +29,8 @@ public class IdentityUserService(
         var result = await signInManager.PasswordSignInAsync(userName, password, false, false);
         return new UserResultDto(result.Succeeded ? null : "Invalid user credentials");
     }
+    public async Task SignOutAsync()
+    {
+        await signInManager.SignOutAsync();
+    }
 }
