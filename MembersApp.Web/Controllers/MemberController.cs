@@ -1,5 +1,7 @@
 ﻿using MembersApp.Application;
 using MembersApp.Application.Members.Interfaces;
+using MembersApp.Domain.Entities;
+using MembersApp.Web.Views.Member;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,21 +18,25 @@ namespace MembersApp.Web.Controllers
             return View();
         }
 
+        [Authorize(Roles = "ADMIN")]
         [HttpGet ("create")]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "ADMIN")]
         [HttpPost("create")]
         public async Task <IActionResult> Create(CreateVM viewModel)
         {
-            var result = await service.AddMemberAsync(viewModel.FirstName, viewModel.LastName, viewModel.Email, viewModel.PhoneNumber),
-               
+            if (!ModelState.IsValid)
+                return View();
 
-            await return View();
+            Address address = new() { Street = viewModel.Street, ZipNumber = viewModel.ZipNumber, City = viewModel.City};
+            Member member = new() { Name = viewModel.Name, Email = viewModel.Email, Phone = viewModel.Phone, MemberAddress = address, };
+            await service.AddMemberAsync(member);               
 
-
+            return RedirectToAction(nameof(Members));
         }
     }
 }

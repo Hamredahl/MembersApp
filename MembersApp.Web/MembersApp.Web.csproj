@@ -17,8 +17,4 @@
     <ProjectReference Include="..\MembersApp.Infrastructure\MembersApp.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
-
 </Project>
