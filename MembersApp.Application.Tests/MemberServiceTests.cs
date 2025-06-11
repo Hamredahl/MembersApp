@@ -11,7 +11,20 @@ public class MemberServiceTests
     public async Task AddMemberAsync_ShouldAddANewMemberToRepository()
     {
         //Arrange
+        var members = new List<Member>()
+        {
+            new () { Name = "Test 1", Email = "test1@test.se" },
+            new () { Name = "Test 2", Email = "test2@test.se" }
+        };
+
         var mockRepository = new Mock<IMemberRepository>();
+        mockRepository
+            .Setup(m => m.GetAllMembersAsync().Result)
+            .Returns(() => [.. members]);
+        mockRepository
+            .Setup(m => m.AddMemberAsync(It.IsAny<Member>()))
+            .Callback<Member>(members.Add);
+
         var mockUnitOfWork = new Mock<IUnitOfWork>();
         mockUnitOfWork.Setup(u => u.Members).Returns(mockRepository.Object);
 
@@ -22,11 +35,37 @@ public class MemberServiceTests
         await memberService.AddMemberAsync(newMember);
 
         //Assert
-        mockRepository.Verify(m => m.AddMemberAsync(It.Is<Member>(m => m.Name == "John Doe" && m.Email == "test@test.com")), Times.Exactly(1));
+        mockRepository.Verify(m => m.AddMemberAsync(It.IsAny<Member>()), Times.Exactly(1));
+        Assert.Equal(3, members.Count);
+        Assert.Contains(members, m => m.Name == "John Doe");
     }
 
     [Fact]
+    public async Task AddMemberAsync_ShouldNormalizeNameAndEmail()
+    {
+        // Arrange
+        var members = new List<Member>();
+        var mockRepository = new Mock<IMemberRepository>();
+        mockRepository
+            .Setup(m => m.AddMemberAsync(It.IsAny<Member>()))
+            .Callback<Member>(members.Add);
+        var mockUnitOfWork = new Mock<IUnitOfWork>();
+        mockUnitOfWork
+            .Setup(u => u.Members)
+            .Returns(mockRepository.Object);
+        var memberService = new MemberService(mockUnitOfWork.Object);
 
+        // Act
+        var newMember = new Member { Name = "jAnE DOE", Email = "Jane@TEST.COM" };
+        await memberService.AddMemberAsync(newMember);
+
+        // Assert
+        Assert.Single(members);
+        Assert.Equal("Jane Doe", members[0].Name);
+        Assert.Equal("jane@test.com", members[0].Email);
+    }
+
+    [Fact]
     public async Task GetAllMembersAsync__ShouldReturnAllMembersOrderedByName()
     {
         //Arrange
@@ -54,6 +93,5 @@ public class MemberServiceTests
         Assert.Equal(sortedMembers, serviceMembers);
         Assert.NotEmpty(serviceMembers);
     }
-
 
 }

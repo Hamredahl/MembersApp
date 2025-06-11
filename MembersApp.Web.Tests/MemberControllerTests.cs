@@ -33,7 +33,7 @@ public class MemberControllerTests
     }
 
     [Fact]
-    public async Task Create_ValidViewModel_RrdirectsToMembers()
+    public async Task Create_ValidViewModel_RedirectsToMembers()
     {
 
     }
