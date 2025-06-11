@@ -12,7 +12,7 @@ public class CreateVM
     public string? Email { get; set; }
 
     [Display(Name = "Phone number")]
-    [RegularExpression($"(\\d+)", ErrorMessage = "Phone number is not valid")]
+    [RegularExpression($"\\+?\\d+[\\-\\s]?[\\s\\d]+", ErrorMessage = "Phone number is not valid")]
     public string? Phone { get; set; }
 
     [Display(Name = "Streetname and number")]

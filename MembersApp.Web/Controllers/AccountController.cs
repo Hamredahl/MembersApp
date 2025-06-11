@@ -1,6 +1,7 @@
 ﻿using MembersApp.Application.Users;
 using MembersApp.Domain.Entities;
 using MembersApp.Web.Views.Account;
+using MembersApp.Web.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
