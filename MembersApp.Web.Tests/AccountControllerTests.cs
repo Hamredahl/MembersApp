@@ -1,7 +1,7 @@
 ﻿using MembersApp.Application.Dtos;
 using MembersApp.Application.Users;
+using MembersApp.Web.Controllers;
 using MembersApp.Web.Views.Account;
-using MembersApp.Web.Views.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
