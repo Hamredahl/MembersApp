@@ -7,12 +7,13 @@ using MembersApp.Infrastructure.Persistance.Repositories;
 using MembersApp.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace MembersApp.Web;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +38,14 @@ public class Program
         builder.Services.AddDbContext<ApplicationContext>(o => o.UseSqlServer(connString));
 
         var app = builder.Build();
+
+
+        //Seed the database with an admin user in development mode
+            using (var scope = app.Services.CreateScope())
+            {
+                var service = scope.ServiceProvider.GetRequiredService<IUserService>();
+                await service.CreateUserAsync("Olena", "1234Aa", isAdmin : true);
+            }
 
         app.UseAuthorization();
 
