@@ -19,12 +19,6 @@ public class MemberService(IUnitOfWork unitOfWork) : IMemberService
         return [.. members.OrderBy(m => m.Name)];
     }
 
-    public async Task<Member> GetMemberAsync(int Id)
-    {
-        Member? member = await unitOfWork.Members.GetMemberAsync(Id);
-        return member is null ? throw new Exception("Member not found, invalid ID") : member;
-    }
-
     private static void NormalizeMemberName(Member member)
     {
         if (member.Name != null)

@@ -9,7 +9,5 @@ namespace MembersApp.Application.Members.Interfaces;
 public interface IMemberService
 {
     Task AddMemberAsync(Member member);
-    Task<Member> GetMemberAsync(int Id);
-    Task<Member[]> GetAllMembersAsync();
-    
+    Task<Member[]> GetAllMembersAsync();    
 }

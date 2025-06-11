@@ -15,18 +15,7 @@ public class MemberRepository(ApplicationContext context) : IMemberRepository
         await context.Members.AddAsync(member);
     }
 
-    public Task DeleteMemberAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
-
     public async Task<Member[]> GetAllMembersAsync() =>
         await context.Members.AsNoTracking().Include(a => a.MemberAddress).ToArrayAsync();
 
-    public async Task<Member?> GetMemberAsync(int id) => await context.Members.FindAsync(id);
-
-    public Task UpdateMemberAsync(Member member)
-    {
-        throw new NotImplementedException();
-    }
 }

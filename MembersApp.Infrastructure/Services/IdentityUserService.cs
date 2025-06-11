@@ -19,7 +19,6 @@ public class IdentityUserService(
         var result = await userManager.CreateAsync(new IdentityUser
         {
             UserName = userName,
-            //Email = userName
         }, password);
 
         if (result.Succeeded && isAdmin)

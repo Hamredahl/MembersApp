@@ -8,9 +8,6 @@ using System.Threading.Tasks;
 namespace MembersApp.Application.Members.Interfaces;
 public interface IMemberRepository
 {
-    Task<Member?> GetMemberAsync(int id);
     Task<Member[]> GetAllMembersAsync();
     Task AddMemberAsync(Member member);
-    Task DeleteMemberAsync(int id);
-    Task UpdateMemberAsync(Member member);
 }

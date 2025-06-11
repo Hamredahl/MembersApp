@@ -8,7 +8,7 @@ namespace MembersApp.Domain.Entities;
 public class Address
 {
     public int Id { get; set; }
-    public string? Street { get; set; }
-    public string? ZipNumber { get; set; }
+    public string? Street { get; set; } //Never shown in runtime, used in test, remove?
+    public string? ZipNumber { get; set; } //Never shown in runtime, used in test, remove?
     public string? City { get; set; }
 }
