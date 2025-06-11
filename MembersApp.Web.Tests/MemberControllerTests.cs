@@ -35,6 +35,70 @@ public class MemberControllerTests
     [Fact]
     public async Task Create_ValidViewModel_RedirectsToMembers()
     {
+        var mockService = new Mock<IMemberService>();
+        var controller = new MemberController(mockService.Object);
+        var viewModel = new CreateVM
+        {
+            Name = "John Doe",
+            Email = "jhon@doe.se",
+            City = "Örebro",
+            Phone = "123456789",
+            Street = "Testgatan 1",
+            ZipNumber = "12345"
+        };
 
+        // Act
+        var result = await controller.Create(viewModel);
+
+        // Assert
+        var redirect = Assert.IsType<RedirectToActionResult>(result);
+        Assert.Equal("Members", redirect.ActionName);
+        mockService.Verify(m => m.AddMemberAsync(It.IsAny<Member>()), Times.Once);
+    }
+
+    [Theory]
+    [InlineData("", "jhon@doe.se", "123456789")]
+    [InlineData("Jhon Doe", "jhondoe#se", "123456789")]
+    [InlineData("Jhon Doe", "jhon@doe.se", "r123456789")]
+    public async Task Create_InvalidViewModel_ReturnsCreateView(string name, string email, string phone)
+    {
+        var mockService = new Mock<IMemberService>();
+        var controller = new MemberController(mockService.Object);
+        controller.ModelState.AddModelError("Name", "Name is required");
+        controller.ModelState.AddModelError("Email", "Email is not valid");
+        controller.ModelState.AddModelError("Phone", "Phone number is not valid");
+
+        var viewModel = new CreateVM
+        {
+            Name = name,
+            Email = email,
+            Phone = phone,
+            City = "Örebro",
+            Street = "Testgatan 1",
+            ZipNumber = "12345"
+        };
+
+        // Act
+        var result = await controller.Create(viewModel);
+
+        // Assert
+        var viewResult = Assert.IsType<ViewResult>(result);
+        Assert.Null(viewResult.Model);
+        mockService.Verify(m => m.AddMemberAsync(It.IsAny<Member>()), Times.Never);
+    }
+
+    [Fact]
+    public void Create_Get_ReturnsViewResult()
+    {
+        // Arrange
+        var mockService = new Mock<IMemberService>();
+        var controller = new MemberController(mockService.Object);
+
+        // Act
+        var result = controller.Create();
+
+        // Assert
+        var viewResult = Assert.IsType<ViewResult>(result);
+        Assert.Null(viewResult.Model);
     }
 }

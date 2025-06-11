@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MembersApp.Web.Views.Account
+namespace MembersApp.Web.Views.Account;
+
+public class LoginVM
 {
-    public class LoginVM
-    {
-        [Required]
-        public required string Username { get; set; }
-        [Required]
-        [DataType(DataType.Password)]
-        public required string Password { get; set; }
-    }
+    [Required]
+    public required string Username { get; set; }
+
+    [Required]
+    [DataType(DataType.Password)]
+    public required string Password { get; set; }
 }
