@@ -1,5 +1,4 @@
 ﻿using MembersApp.Application;
-using MembersApp.Application.Addresses.Interfaces;
 using MembersApp.Application.Members.Interfaces;
 using MembersApp.Application.Members.Services;
 using MembersApp.Application.Users;
@@ -20,7 +19,6 @@ public class Program
         builder.Services.AddControllersWithViews();
 
         builder.Services.AddScoped<IMemberRepository, MemberRepository>();
-        builder.Services.AddScoped<IAddressRepository, AddressRepository>();
         builder.Services.AddScoped<IMemberService, MemberService>();
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 

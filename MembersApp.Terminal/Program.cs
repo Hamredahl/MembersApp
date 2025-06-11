@@ -1,5 +1,4 @@
 ﻿using MembersApp.Application;
-using MembersApp.Application.Addresses.Interfaces;
 using MembersApp.Application.Members.Interfaces;
 using MembersApp.Application.Members.Services;
 using MembersApp.Infrastructure.Persistance;
@@ -25,7 +24,6 @@ public class Program
             options.UseSqlServer(connectionString));
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IMemberRepository, MemberRepository>();
-        services.AddScoped<IAddressRepository, AddressRepository>();
         services.AddScoped<IMemberService, MemberService>();
 
         using var serviceProvider = services.BuildServiceProvider();

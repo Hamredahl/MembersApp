@@ -1,5 +1,4 @@
-﻿using MembersApp.Application.Addresses.Interfaces;
-using MembersApp.Application.Members.Interfaces;
+﻿using MembersApp.Application.Members.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +9,5 @@ namespace MembersApp.Application;
 public interface IUnitOfWork
 {
     IMemberRepository Members { get; }
-    IAddressRepository Addresses { get; }
     Task SaveAllAsync();
 }
