@@ -4,7 +4,7 @@ using MembersApp.Web.Views.Member;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MembersApp.Web.Views.Controllers;
+namespace MembersApp.Web.Controllers;
 
 public class MemberController(IMemberService service) : Controller
 {
